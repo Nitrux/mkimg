@@ -67,11 +67,18 @@ DESKTOP_PACKAGES='
 ubuntu-desktop
 '
 
+MISC_DESKTOP_PKGS='
+gnome-software
+'
+
 apt update &> /dev/null
 apt -yy upgrade
-apt -yy install ${DESKTOP_PACKAGES//\\n/ }
-apt clean &> /dev/null
-apt autoclean &> /dev/null
+apt -yy install ${DESKTOP_PACKAGES//\\n/ } ${MISC_DESKTOP_PKGS//\\n/ }
+
+
+# -- No apt usage past this point. -- #
+#WARNING
+
 
 # -- Install the kernel.
 
