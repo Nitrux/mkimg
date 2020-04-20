@@ -64,6 +64,8 @@ printf "INSTALLING DESKTOP."
 printf "\n"
 
 DESKTOP_PACKAGES='
+elementary-minimal
+elementary-standard
 elementary-desktop
 '
 
@@ -71,8 +73,7 @@ apt update &> /dev/null
 apt -yy upgrade
 apt -yy install ${DESKTOP_PACKAGES//\\n/ }
 apt -yy purge --remove gnome-software
-apt clean &> /dev/null
-apt autoclean &> /dev/null
+
 
 # -- Install the kernel.
 
