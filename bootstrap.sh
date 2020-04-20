@@ -73,8 +73,6 @@ neon-desktop
 apt update &> /dev/null
 apt -yy upgrade
 apt -yy install ${DESKTOP_PACKAGES//\\n/ }
-apt clean &> /dev/null
-apt autoclean &> /dev/null
 
 
 # -- Install the kernel.
