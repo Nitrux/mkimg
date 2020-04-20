@@ -75,6 +75,16 @@ apt -yy install ${DESKTOP_PACKAGES//\\n/ }
 apt -yy purge --remove gnome-software
 
 
+# -- Make sure to refresh appstream cache.
+
+appstreamcli refresh --force
+apt update &> /dev/null
+
+
+# -- No apt usage past this point. -- #
+#WARNING
+
+
 # -- Install the kernel.
 
 printf "\n"
