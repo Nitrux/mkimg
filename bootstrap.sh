@@ -41,15 +41,15 @@ apt update &> /dev/null
 apt -yy install ${BASIC_PACKAGES//\\n/ } --no-install-recommends
 
 
-# -- Add key for elementary repositories
+# -- Add key for Ubuntu repositories
 
 printf "\n"
 printf "ADD REPOSITORY KEYS."
 printf "\n"
 
 
-apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 4E1F8A59 > /dev/null
-apt-key adv --keyserver keyserver.ubuntu.com --recv-keys FE70B91C > /dev/null
+apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3B4FE6ACC0B21F32 > /dev/null
+apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 871920D1991BC93C > /dev/null
 
 
 # -- Use sources.list.build to build ISO.
@@ -64,13 +64,12 @@ printf "INSTALLING DESKTOP."
 printf "\n"
 
 DESKTOP_PACKAGES='
-elementary-desktop
+ubuntu-desktop
 '
 
 apt update &> /dev/null
 apt -yy upgrade
 apt -yy install ${DESKTOP_PACKAGES//\\n/ }
-apt -yy purge --remove gnome-software
 apt clean &> /dev/null
 apt autoclean &> /dev/null
 

@@ -99,11 +99,11 @@ mksquashfs $BUILD_DIR $ISO_DIR/casper/filesystem.squashfs -comp gzip -no-progres
 wget -qO /bin/mkiso https://raw.githubusercontent.com/Nitrux/tools/master/mkiso
 chmod +x /bin/mkiso
 
-git clone https://github.com/UriHerrera/elementary-grub-theme grub-theme
+git clone https://github.com/UriHerrera/ubuntu-grub-theme grub-theme
 
 
 mkiso \
-	-V "elementary" \
+	-V "Ubuntu" \
 	-b \
 	-e \
 	-u "$UPDATE_URL" \
@@ -111,7 +111,7 @@ mkiso \
 	-r "${TRAVIS_COMMIT:0:7}" \
 	-g $CONFIG_DIR/files/grub.cfg \
 	-g $CONFIG_DIR/files/loopback.cfg \
-	-t grub-theme/elementary \
+	-t grub-theme/ubuntu \
 	$ISO_DIR $OUTPUT_DIR/$IMAGE
 
 # -- Calculate the checksum.
