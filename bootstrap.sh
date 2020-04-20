@@ -75,6 +75,16 @@ apt -yy upgrade
 apt -yy install ${DESKTOP_PACKAGES//\\n/ }
 
 
+# -- Make sure to refresh appstream cache.
+
+appstreamcli refresh --force
+apt update &> /dev/null
+
+
+# -- No apt usage past this point. -- #
+#WARNING
+
+
 # -- Install the kernel.
 
 printf "\n"
