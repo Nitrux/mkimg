@@ -4,41 +4,37 @@
 
 set -x
 
-# -- Update xorriso and grub.
 
-xorriso='
-http://mirrors.kernel.org/ubuntu/pool/main/e/efivar/libefiboot1_37-2ubuntu2_amd64.deb
-http://mirrors.kernel.org/ubuntu/pool/main/e/efivar/libefivar1_37-2ubuntu2_amd64.deb
-http://mirrors.kernel.org/ubuntu/pool/main/g/gcc-9/gcc-9-base_9.2.1-25ubuntu1_amd64.deb
-http://mirrors.kernel.org/ubuntu/pool/main/g/gcc-9/libgcc1_9.2.1-21ubuntu1_amd64.deb
-http://mirrors.kernel.org/ubuntu/pool/main/g/glibc/libc-bin_2.30-0ubuntu3_amd64.deb
-http://mirrors.kernel.org/ubuntu/pool/main/g/glibc/libc6_2.30-0ubuntu3_amd64.deb
-http://mirrors.kernel.org/ubuntu/pool/main/g/glibc/locales_2.30-0ubuntu3_all.deb
-http://mirrors.kernel.org/ubuntu/pool/main/g/grub2/grub-common_2.04-1ubuntu16_amd64.deb
-http://mirrors.kernel.org/ubuntu/pool/main/g/grub2/grub-efi-amd64-bin_2.04-1ubuntu16_amd64.deb
-http://mirrors.kernel.org/ubuntu/pool/main/g/grub2/grub2-common_2.04-1ubuntu16_amd64.deb
-http://mirrors.kernel.org/ubuntu/pool/main/g/grub2/grub-pc-bin_2.04-1ubuntu16_amd64.deb
-http://mirrors.kernel.org/ubuntu/pool/main/g/grub2/grub-pc_2.04-1ubuntu16_amd64.deb
-http://mirrors.kernel.org/ubuntu/pool/main/n/ncurses/libtinfo6_6.1+20181013-2ubuntu2_amd64.deb
-http://mirrors.kernel.org/ubuntu/pool/main/r/readline/libreadline8_8.0-1_amd64.deb
-http://mirrors.kernel.org/ubuntu/pool/main/r/readline/readline-common_8.0-1_all.deb
-http://mirrors.kernel.org/ubuntu/pool/universe/libb/libburn/libburn4_1.5.0-1_amd64.deb
-http://mirrors.kernel.org/ubuntu/pool/universe/libi/libisoburn/libisoburn1_1.5.0-1build1_amd64.deb
-http://mirrors.kernel.org/ubuntu/pool/universe/libi/libisoburn/xorriso_1.5.0-1build1_amd64.deb
-http://mirrors.kernel.org/ubuntu/pool/universe/libi/libisofs/libisofs6_1.5.0-1_amd64.deb
-http://mirrors.kernel.org/ubuntu/pool/universe/j/jigit/libjte1_1.21-1ubuntu1_amd64.deb
+# -- Use sources.list.focal to update xorriso and GRUB.
+#WARNING
+
+wget -O /etc/apt/sources.list https://raw.githubusercontent.com/Nitrux/nitrux-iso-tool/master/configs/files/sources.list.focal
+
+XORRISO_PACKAGES='
+gcc-10-base
+grub-common
+grub-efi-amd64-bin
+grub-pc
+grub-pc-bin
+grub2-common
+libburn4
+libc-bin
+libc6
+libefiboot1
+libefivar1
+libgcc1
+libisoburn1
+libisofs6
+libjte1
+libreadline8
+libtinfo6
+locales
+readline-common
+xorriso
 '
 
-mkdir /latest_xorriso
-
-for x in $xorriso; do
-printf "$x"
-    wget -q -P /latest_xorriso $x
-done
-
-dpkg -iR --force-all /latest_xorriso/
-dpkg --configure -a
-rm -r /latest_xorriso
+apt update &> /dev/null
+apt -yy install ${XORRISO_PACKAGES//\\n/ } --no-install-recommends
 
 
 # -- Prepare the directories for the build.
@@ -70,17 +66,24 @@ chmod +x /bin/runch
 
 cp -r configs $BUILD_DIR/
 
-runch $BUILD_DIR -s bootstrap.sh || true
+cat bootstrap.sh | runch $BUILD_DIR bash || true
 
 rm -rf $BUILD_DIR/configs
 
 
 # -- Copy the kernel and initramfs to $ISO_DIR.
+# -- BUG vmlinuz and initrd are not moved to / they're put and left at /boot
 
 mkdir -p $ISO_DIR/boot
 
-cp $(echo $BUILD_DIR/vmlinuz* | tr ' ' '\n' | sort | tail -n 1) $ISO_DIR/boot/kernel
-cp $(echo $BUILD_DIR/initrd* | tr ' ' '\n' | sort | tail -n 1) $ISO_DIR/boot/initramfs
+cp $(echo $BUILD_DIR/boot/vmlinuz* | tr ' ' '\n' | sort | tail -n 1) $ISO_DIR/boot/kernel
+cp $(echo $BUILD_DIR/boot/initrd* | tr ' ' '\n' | sort | tail -n 1) $ISO_DIR/boot/initramfs
+
+
+# -- WARNING FIXME BUG This file isn't copied during the chroot.
+
+mkdir -p $ISO_DIR/boot/grub/x86_64-efi
+cp /usr/lib/grub/x86_64-efi/linuxefi.mod $ISO_DIR/boot/grub/x86_64-efi
 
 
 # -- Compress the root filesystem.
