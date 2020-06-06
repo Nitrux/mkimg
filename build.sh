@@ -84,7 +84,7 @@ mkdir -p $iso_dir/boot
 cp $(echo $build_dir/boot/vmlinuz* | tr " " "\n" | sort | tail -n 1) $iso_dir/boot/kernel
 cp $(echo $build_dir/boot/initrd*  | tr " " "\n" | sort | tail -n 1) $iso_dir/boot/initramfs
 
-rm -f $build_dir/boot/*
+rm -rf $build_dir/boot/*
 
 
 #	WARNING FIXME BUG: This file isn't copied during the chroot.
