@@ -105,6 +105,7 @@ mksquashfs $build_dir $iso_dir/casper/filesystem.squashfs -comp gzip -no-progres
 
 wget -qO /bin/mkiso https://raw.githubusercontent.com/Nitrux/tools/master/mkiso
 chmod +x /bin/mkiso
+
 git clone https://github.com/UriHerrera/breeze-grub-theme grub-theme
 
 mkiso \

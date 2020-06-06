@@ -98,16 +98,15 @@ apt update &> /dev/null
 #	Changes specific to this image. If they can be put in a package, do so.
 #	FIXME: These fixes should be included in a package.
 
-puts "ADDING MISC. FIXES.
+puts "ADDING MISC. FIXES."
 
 cp /configs/files/10-globally-managed-devices.conf /etc/NetworkManager/conf.d/
 
 
 #	Update the initramfs.
 
-printf "\n"
-printf "UPDATE INITRAMFS."
-printf "\n"
+
+puts "UPDATING INITRAMFS."
 
 cp /configs/files/initramfs.conf /etc/initramfs-tools/
 cat /configs/scripts/persistence >> /usr/share/initramfs-tools/scripts/casper-bottom/05mountpoints_lupin
@@ -118,9 +117,7 @@ update-initramfs -u
 
 #	Clean the filesystem.
 
-printf "\n"
-printf "REMOVE CASPER."
-printf "\n"
+puts "REMOVE CASPER."
 
 REMOVE_PACKAGES='
 casper
@@ -130,6 +127,4 @@ lupin-casper
 /usr/bin/dpkg --remove --no-triggers --force-remove-essential --force-bad-path ${REMOVE_PACKAGES//\\n/ }
 
 
-printf "\n"
-printf "EXITING BOOTSTRAP."
-printf "\n"
+puts "EXITING BOOTSTRAP."
