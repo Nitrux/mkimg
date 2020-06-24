@@ -2,135 +2,123 @@
 
 set -x
 
-printf "\n"
-printf "STARTING BOOTSTRAP."
-printf "\n"
-
 export LANG=C
 export LC_ALL=C
 
+puts () { printf "\n\n --- %s\n" "$*"; }
 
-# -- Install basic packages.
 
-printf "\n"
-printf "INSTALLING BASIC PACKAGES."
-printf "\n"
+#	let us start.
+
+puts "STARTING BOOTSTRAP."
+
+
+#	Install basic packages.
+
+puts "INSTALLING BASIC PACKAGES."
 
 BASIC_PACKAGES='
-apt-transport-https
-apt-utils
-ca-certificates
-casper
-cifs-utils
-dhcpcd5
-gnupg2
-language-pack-en
-language-pack-en-base
-localechooser-data
-locales
-lupin-casper
-packagekit
-policykit-1
-sudo
-user-setup
-wget
-xz-utils
+	apt-transport-https
+	apt-utils
+	ca-certificates
+	casper
+	cifs-utils
+	dhcpcd5
+	gnupg2
+	language-pack-en
+	language-pack-en-base
+	localechooser-data
+	locales
+	lupin-casper
+	packagekit
+	policykit-1
+	sudo
+	user-setup
+	wget
+	xz-utils
 '
 
 apt update &> /dev/null
 apt -yy install ${BASIC_PACKAGES//\\n/ } --no-install-recommends
 
 
-# -- Add key for Ubuntu repositories
+#	Add key for Neon repository.
 
-printf "\n"
-printf "ADD REPOSITORY KEYS."
-printf "\n"
+puts "ADDING REPOSITORY KEYS."
 
-
-apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 3B4FE6ACC0B21F32 > /dev/null
-apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 871920D1991BC93C > /dev/null
+apt-key adv --keyserver keyserver.ubuntu.com --recv-keys \
+	3B4FE6ACC0B21F32 \
+	871920D1991BC93C > /dev/null
 
 
-# -- Use sources.list.build to build ISO.
+#	Use sources.list.build to build ISO.
 
 cp /configs/files/sources.list /etc/apt/sources.list
 
 
-# -- Update packages list and install packages. Install desktop packages.
+#	Update packages list and install packages. Install desktop packages.
 
-printf "\n"
-printf "INSTALLING DESKTOP."
-printf "\n"
+puts "INSTALLING DESKTOP PACKAGES."
 
 DESKTOP_PACKAGES='
-ubuntu-desktop
+	ubuntu-desktop
 '
 
 MISC_DESKTOP_PKGS='
-gnome-software
+	gnome-software
 '
 
 apt update &> /dev/null
 apt -yy upgrade
-apt -yy install ${DESKTOP_PACKAGES//\\n/ } ${MISC_DESKTOP_PKGS//\\n/ }
+apt -yy install $DESKTOP_PACKAGES $MISC_DESKTOP_PKGS
 
 
-# -- No apt usage past this point. -- #
-#WARNING
+#	Install the kernel.
 
+puts "INSTALL KERNEL."
 
-# -- Install the kernel.
-
-printf "\n"
-printf "INSTALLING KERNEL."
-printf "\n"
-
-kfiles='
-https://kernel.ubuntu.com/~kernel-ppa/mainline/v5.6.5/linux-headers-5.6.5-050605_5.6.5-050605.202004171629_all.deb
-https://kernel.ubuntu.com/~kernel-ppa/mainline/v5.6.5/linux-headers-5.6.5-050605-generic_5.6.5-050605.202004171629_amd64.deb
-https://kernel.ubuntu.com/~kernel-ppa/mainline/v5.6.5/linux-image-unsigned-5.6.5-050605-generic_5.6.5-050605.202004171629_amd64.deb
-https://kernel.ubuntu.com/~kernel-ppa/mainline/v5.6.5/linux-modules-5.6.5-050605-generic_5.6.5-050605.202004171629_amd64.deb
+INSTALL_KERNEL='
+	linux-generic
 '
 
-mkdir latest_kernel
-
-for x in $kfiles; do
-	printf "$x"
-	wget -q -P latest_kernel $x
-done
-
-dpkg -iR latest_kernel &> /dev/null
-rm -r latest_kernel
+apt -qq -o=Dpkg::Use-Pty=0 -yy install $INSTALL_KERNEL --no-install-recommends
+apt -qq -o=Dpkg::Use-Pty=0 -yy autoremove
+apt clean &> /dev/null
+apt autoclean &> /dev/null
 
 
-# -- Add fix for https://bugs.launchpad.net/ubuntu/+source/network-manager/+bug/1638842.
+#	Make sure to refresh appstream cache.
 
-printf "\n"
-printf "ADD MISC. FIXES."
-printf "\n"
+appstreamcli refresh --force
+apt update &> /dev/null
+
+
+#	WARNING:
+#	No apt usage past this point.
+
+#	Changes specific to this image. If they can be put in a package, do so.
+#	FIXME: These fixes should be included in a package.
+
+puts "ADDING MISC. FIXES."
 
 cp /configs/files/10-globally-managed-devices.conf /etc/NetworkManager/conf.d/
 
 
-# -- Update the initramfs.
+#	Update the initramfs.
 
-printf "\n"
-printf "UPDATE INITRAMFS."
-printf "\n"
+
+puts "UPDATING INITRAMFS."
 
 cp /configs/files/initramfs.conf /etc/initramfs-tools/
 cat /configs/scripts/persistence >> /usr/share/initramfs-tools/scripts/casper-bottom/05mountpoints_lupin
-# cp /configs/files/iso_scanner /usr/share/initramfs-tools/scripts/casper-premount/20iso_scan
+# cp /configs/scripts/iso_scanner /usr/share/initramfs-tools/scripts/casper-premount/20iso_scan
 
 update-initramfs -u
 
 
-# -- Clean the filesystem.
+#	Clean the filesystem.
 
-printf "\n"
-printf "REMOVE CASPER."
-printf "\n"
+puts "REMOVE CASPER."
 
 REMOVE_PACKAGES='
 casper
@@ -140,6 +128,4 @@ lupin-casper
 /usr/bin/dpkg --remove --no-triggers --force-remove-essential --force-bad-path ${REMOVE_PACKAGES//\\n/ }
 
 
-printf "\n"
-printf "EXITING BOOTSTRAP."
-printf "\n"
+puts "EXITING BOOTSTRAP."
