@@ -25,6 +25,11 @@ apt -qq -yy install $XORRISO_PACKAGES --no-install-recommends
 pip3 install --upgrade python-gitlab
 
 
+#	base image URL.
+
+base_img_url=http://cdimage.ubuntu.com/ubuntu-base/releases/20.04/release/ubuntu-base-20.04-base-amd64.tar.gz
+
+
 #	Prepare the directories for the build.
 
 build_dir=$(mktemp -d)
