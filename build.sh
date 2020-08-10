@@ -2,38 +2,27 @@
 
 #	Exit on errors.
 
-set -e
+set -xe
 
 
-#	base image URL.
+#	Travis stuff.
 
-base_img_url=http://cdimage.ubuntu.com/ubuntu-base/releases/20.04/release/ubuntu-base-20.04.1-base-amd64.tar.gz
+wget -qO /etc/apt/sources.list https://raw.githubusercontent.com/Nitrux/nitrux-iso-tool/master/configs/files/sources.list.focal
+apt -qq update
 
 XORRISO_PACKAGES='
-	gcc-10-base
-	grub-common
-	grub-efi-amd64-bin
-	grub-pc
-	grub-pc-bin
-	grub2-common
 	libburn4
-	libc-bin
-	libc6
-	libefiboot1
-	libefivar1
 	libgcc1
 	libisoburn1
 	libisofs6
-	libjte1
-	libreadline8
-	libtinfo6
-	locales
-	readline-common
+	libjte2
+	mtools
+	sshpass
 	xorriso
+	zsync
 '
-
-apt update &> /dev/null
-apt -q -yy install $XORRISO_PACKAGES --no-install-recommends
+apt -qq -yy install $XORRISO_PACKAGES --no-install-recommends
+pip3 install --upgrade python-gitlab
 
 
 #	Prepare the directories for the build.
