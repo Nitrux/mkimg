@@ -63,6 +63,11 @@ puts "ADDING SOURCES FILES."
 cp /configs/files/sources.list.neon.user /etc/apt/sources.list.d/neon-user-repo.list
 
 
+#	Block installation of some packages.
+
+cp /configs/files/preferences /etc/apt/preferences
+
+
 #	Update packages list and install packages. Install desktop packages.
 
 puts "INSTALLING DESKTOP PACKAGES."
