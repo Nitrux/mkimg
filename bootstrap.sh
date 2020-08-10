@@ -61,7 +61,6 @@ apt-key adv --keyserver keyserver.ubuntu.com --recv-keys \
 puts "ADDING SOURCES FILES."
 
 cp /configs/files/sources.list.neon.user /etc/apt/sources.list.d/neon-user-repo.list
-cp /configs/files/sources.list.focal /etc/apt/sources.list.d/ubuntu-focal-repo.list
 
 
 #	Update packages list and install packages. Install desktop packages.
