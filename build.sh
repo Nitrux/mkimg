@@ -7,13 +7,7 @@ set -e
 
 #	base image URL.
 
-base_img_url=http://cdimage.ubuntu.com/ubuntu-base/releases/18.04/release/ubuntu-base-18.04.4-base-amd64.tar.gz
-
-
-#	WARNING:
-#	Use sources.list.focal to update xorriso and GRUB.
-
-wget -qO /etc/apt/sources.list https://raw.githubusercontent.com/Nitrux/nitrux-iso-tool/master/configs/files/sources.list.focal
+base_img_url=http://cdimage.ubuntu.com/ubuntu-base/releases/20.04/release/ubuntu-base-20.04.1-base-amd64.tar.gz
 
 XORRISO_PACKAGES='
 	gcc-10-base

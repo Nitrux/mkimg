@@ -1,6 +1,6 @@
 #! /bin/bash
 
-set -x
+set -xe
 
 export LANG=C
 export LC_ALL=C
@@ -42,8 +42,8 @@ BASIC_PACKAGES='
 	xz-utils
 '
 
-apt update &> /dev/null
-apt -yy install ${BASIC_PACKAGES//\\n/ } --no-install-recommends
+apt -qq update
+apt -qq -o=Dpkg::Use-Pty=0 -yy install ${BASIC_PACKAGES//\\n/ } --no-install-recommends
 
 
 #	Add key for Neon repository.
@@ -51,12 +51,17 @@ apt -yy install ${BASIC_PACKAGES//\\n/ } --no-install-recommends
 puts "ADDING REPOSITORY KEYS."
 
 apt-key adv --keyserver keyserver.ubuntu.com --recv-keys \
-	55751E5D > /dev/null
+	55751E5D \
+	3B4FE6ACC0B21F32 \
+	871920D1991BC93C > /dev/null
 
 
-#	Use sources.list.build to build ISO.
+#	Copy sources.list files.
 
-cp /configs/files/sources.list /etc/apt/sources.list
+puts "ADDING SOURCES FILES."
+
+cp /configs/files/sources.list.neon.user /etc/apt/sources.list.d/neon-user-repo.list
+cp /configs/files/sources.list.focal /etc/apt/sources.list.d/ubuntu-focal-repo.list
 
 
 #	Update packages list and install packages. Install desktop packages.
@@ -67,9 +72,9 @@ DESKTOP_PACKAGES='
 	neon-desktop
 '
 
-apt update &> /dev/null
-apt -yy upgrade
-apt -yy install ${DESKTOP_PACKAGES//\\n/ }
+apt -qq update
+apt -qq -o=Dpkg::Use-Pty=0 -yy upgrade
+apt -qq -o=Dpkg::Use-Pty=0 -yy install ${DESKTOP_PACKAGES//\\n/ }
 
 
 #	Install the kernel.
@@ -89,7 +94,7 @@ apt autoclean &> /dev/null
 #	Make sure to refresh appstream cache.
 
 appstreamcli refresh --force
-apt update &> /dev/null
+apt -qq update
 
 
 #	WARNING:
