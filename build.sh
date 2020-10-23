@@ -1,45 +1,41 @@
-#! /bin/sh
+#! /bin/bash
 
 #	Exit on errors.
 
-set -e
+set -xe
+
+
+#	Travis stuff.
+
+XORRISO_PKGS='
+	libburn4
+	libisoburn1
+	libisofs6
+	libjte2
+	mtools
+	sshpass
+	xorriso
+	zsync
+'
+
+GRUB_PKGS='
+	grub-common
+	grub-efi-amd64
+	grub-efi-amd64-bin
+	grub-efi-amd64-signed
+	grub-pc-bin
+	grub2-common
+	shim-signed
+'
+
+apt -qq update
+apt -qq -yy install $XORRISO_PKGS $GRUB_PKGS --no-install-recommends
+pip3 install --upgrade python-gitlab
 
 
 #	base image URL.
 
-base_img_url=http://cdimage.ubuntu.com/ubuntu-base/releases/18.04/release/ubuntu-base-18.04.4-base-amd64.tar.gz
-
-
-#	WARNING:
-#	Use sources.list.focal to update xorriso and GRUB.
-
-wget -qO /etc/apt/sources.list https://raw.githubusercontent.com/Nitrux/nitrux-iso-tool/master/configs/files/sources.list.focal
-
-XORRISO_PACKAGES='
-	gcc-10-base
-	grub-common
-	grub-efi-amd64-bin
-	grub-pc
-	grub-pc-bin
-	grub2-common
-	libburn4
-	libc-bin
-	libc6
-	libefiboot1
-	libefivar1
-	libgcc1
-	libisoburn1
-	libisofs6
-	libjte1
-	libreadline8
-	libtinfo6
-	locales
-	readline-common
-	xorriso
-'
-
-apt update &> /dev/null
-apt -q -yy install $XORRISO_PACKAGES --no-install-recommends
+base_img_url=http://cdimage.ubuntu.com/ubuntu-base/releases/20.04/release/ubuntu-base-20.04.1-base-amd64.tar.gz
 
 
 #	Prepare the directories for the build.
@@ -47,6 +43,8 @@ apt -q -yy install $XORRISO_PACKAGES --no-install-recommends
 build_dir=$(mktemp -d)
 iso_dir=$(mktemp -d)
 output_dir=$(mktemp -d)
+
+chmod 755 $build_dir
 
 config_dir=$PWD/configs
 
@@ -76,6 +74,11 @@ chmod +x /bin/runch
 	bash || :
 
 
+#	Check filesystem size.
+
+du -hs $build_dir
+
+
 #	Copy the kernel and initramfs to $iso_dir.
 #	BUG: vmlinuz and initrd are not moved to $iso_dir/; they're left at $build_dir/boot
 
@@ -84,7 +87,12 @@ mkdir -p $iso_dir/boot
 cp $(echo $build_dir/boot/vmlinuz* | tr " " "\n" | sort | tail -n 1) $iso_dir/boot/kernel
 cp $(echo $build_dir/boot/initrd*  | tr " " "\n" | sort | tail -n 1) $iso_dir/boot/initramfs
 
-rm -rf $build_dir/boot/*
+
+#	Remove chroot host kernel from $build_dir.
+#	BUG: vmlinuz and initrd links are not created in $build_dir/; they're left at $build_dir/boot
+
+rm \
+	$build_dir/boot/*
 
 
 #	WARNING FIXME BUG: This file isn't copied during the chroot.
@@ -117,7 +125,7 @@ mkiso \
 	-r "${TRAVIS_COMMIT:0:7}" \
 	-g $config_dir/files/grub.cfg \
 	-g $config_dir/files/loopback.cfg \
-	-t grub-theme/elementary \
+	-t grub-theme/ubuntu \
 	$iso_dir $output_dir/$image
 
 

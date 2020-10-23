@@ -17,7 +17,7 @@ puts "STARTING BOOTSTRAP."
 
 puts "INSTALLING BASIC PACKAGES."
 
-BASIC_PACKAGES='
+BASIC_PKGS='
 	apt-transport-https
 	apt-utils
 	ca-certificates
@@ -39,7 +39,7 @@ BASIC_PACKAGES='
 '
 
 apt update &> /dev/null
-apt -yy install ${BASIC_PACKAGES//\\n/ } --no-install-recommends
+apt -yy install $BASIC_PKGS --no-install-recommends
 
 
 #	Add key for Neon repository.
@@ -60,7 +60,7 @@ cp /configs/files/sources.list /etc/apt/sources.list
 
 puts "INSTALLING DESKTOP PACKAGES."
 
-DESKTOP_PACKAGES='
+DESKTOP_PKGS='
 	elementary-minimal
 	elementary-standard
 	elementary-desktop
@@ -72,7 +72,7 @@ MISC_DESKTOP_PKGS='
 
 apt update &> /dev/null
 apt -yy upgrade
-apt -yy install $DESKTOP_PACKAGES
+apt -yy install $DESKTOP_PKGS
 apt -yy purge --remove $MISC_DESKTOP_PKGS
 
 
@@ -123,12 +123,12 @@ update-initramfs -u
 
 puts "REMOVE CASPER."
 
-REMOVE_PACKAGES='
+REMOVE_CASPER='
 casper
 lupin-casper
 '
 
-/usr/bin/dpkg --remove --no-triggers --force-remove-essential --force-bad-path ${REMOVE_PACKAGES//\\n/ }
+/usr/bin/dpkg --remove --no-triggers --force-remove-essential --force-bad-path $REMOVE_CASPER
 
 
 puts "EXITING BOOTSTRAP."
