@@ -1,17 +1,15 @@
-sudo: required
+dist: focal
+
 script:
-- sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys 6B05F25D762E3157 > /dev/null
-- wget -q -O - https://www.mongodb.org/static/pgp/server-3.2.pub | sudo apt-key add - > /dev/null
-- sudo apt-get -qq update > /dev/null
-- sudo apt-get -yy -qq install util-linux squashfs-tools zsync xorriso grub-common grub2-common grub-efi-amd64-bin sshpass mtools --no-install-recommends > /dev/null
-- sudo bash build.sh
+  - sudo ./build.sh
+
 branches:
   except:
   - "/^(?i:continuous)$/"
+
 notifications:
   email: false
-  slack:
-    secure: nEq/ErSX8xL+DZYy73UYLZysG4fOqfeYK55B2w6ceHiA4+q1wHolNWOtNONRSjPChjRNg1msGkmD+ALi41GF3GCx8kwp7Eib6mVmZqJmprZLmyx0EbYjDrTtSTh1nGWm434YagSriVVg1PnSMBptHwQ0rFrpmoGUhKyH/JlbZKsXoRUWj9djacrcccccqRsw9aZ4PYTtj8275rQdphXxElcYqO7yIB6cr/tg+IdV/i3zWNDGKIVFFrH0uVtTBw0JQmnufCUslzwicaC49oED3kzfXV4egNn8rozdUZqVZ8GNEJ/xOrBWD3dPqnDgBaUQ3GnbqBZ1KjOZgyX2S/534XxV1o3ew5diueSjzWkVz5dFIdzdcTvg5NpJb/44QO+AzEUTa6ytLByZt4OMeR3XshYesCU0R5W68Vn/oTujgHct0x72/j0I4QMTcb1vDhHDycV2/+P3wApcTx7D68Y4NI6+gOExLyqsi2Se7xC3H/Y7x1aFJqbzvFFuz6pUdNUionhgR0k8hZ9GsisGcR5Lh2x1V4D7JvhAfP4joeY2dmAy+9D6hyGLVJUzTpkhclOeP6Su7s+RnOJlbKcUoHBY+2zJ75npgLbqj8UAZ71YNvmcZLYYxGeqNYTDnqbx+RNQ6s/p/Kg/l4/gLOPlWgJRXFVgDqVkmOKJbaZlcqbOVFs=
+
 env:
   global:
     - secure: "jg0HudrrDtQPSw2ZWXhGqZlWzMILDpHjSIBCnIZd6Nx42q6AzBw5fUBA3PnwM/V2/yAcVRdaMs57xlr4boG+Rxge696dGCqWTZ28rT6lTPmLFKTPxuyYWiqGfGYZcoAAKBr131fEbRNuncH3JdybSU7DccmYR8K5S+FgGFGHHDRrwnaDpgqxyLZBXsR1+UQxENMmHlchXJZucBfrY3nk2nRFySjbLsgTXTausMX8SWpG/6C9a53ZBHy6fAaAzCXD7lYSV4aYZNkFiWm5zbx6yXufe0a5TTbysHBI1hTKcDY/le7cfs+LgmMbogV9rJOt9HrtE+8VrHNrF9V5CBqhFHu4g+K5uh5n2yCtuCYBVhQ989ky9KjvLC2ENfeXExfRysTTtYLb8f4wzJPFI1+3D3L2Y4Ynfmvg/YuA0uLAmA1OJ6g2cILSUlp3SLAlXwpSIXHV8QEOWrgIf5oDxqyOpLLtDzCFIkxGs8hMexzrnD/Xj0llzLxI2MG2NZ/L6mmkOXmnVYkyQGd5z6T5B94wGqSLP9DADcga6kHR0oBaeLi17l8+DgwpdU/h1RLbhvd251ooFNjC4e7x8924rHcGmzGI7Ci+owwD9tkFtsYdGydnlHlY3IfmCQRuqy4zAOemMuDCzNT95NuM7jjw7kwDi3AjrKhMKIpcZV9/9vX8DLU="
