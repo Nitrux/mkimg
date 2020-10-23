@@ -39,7 +39,7 @@ BASIC_PACKAGES='
 '
 
 apt update &> /dev/null
-apt -yy install ${BASIC_PACKAGES//\\n/ } --no-install-recommends
+apt -yy install $BASIC_PACKAGES--no-install-recommends
 
 
 #	Add key for Neon repository.
@@ -120,12 +120,12 @@ update-initramfs -u
 
 puts "REMOVE CASPER."
 
-REMOVE_PACKAGES='
+REMOVE_CASPER='
 casper
 lupin-casper
 '
 
-/usr/bin/dpkg --remove --no-triggers --force-remove-essential --force-bad-path ${REMOVE_PACKAGES//\\n/ }
+/usr/bin/dpkg --remove --no-triggers --force-remove-essential --force-bad-path $REMOVE_CASPER
 
 
 puts "EXITING BOOTSTRAP."
