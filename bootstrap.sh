@@ -17,7 +17,7 @@ puts "STARTING BOOTSTRAP."
 
 puts "INSTALLING BASIC PACKAGES."
 
-BASIC_PACKAGES='
+BASIC_PKGS='
 	apt-transport-https
 	apt-utils
 	ca-certificates
@@ -39,7 +39,7 @@ BASIC_PACKAGES='
 '
 
 apt update &> /dev/null
-apt -yy install $BASIC_PACKAGES--no-install-recommends
+apt -yy install $BASIC_PKGS--no-install-recommends
 
 
 #	Add key for Neon repository.
@@ -60,7 +60,7 @@ cp /configs/files/sources.list /etc/apt/sources.list
 
 puts "INSTALLING DESKTOP PACKAGES."
 
-DESKTOP_PACKAGES='
+DESKTOP_PKGS='
 	ubuntu-desktop
 '
 
@@ -70,7 +70,7 @@ MISC_DESKTOP_PKGS='
 
 apt update &> /dev/null
 apt -yy upgrade
-apt -yy install $DESKTOP_PACKAGES $MISC_DESKTOP_PKGS
+apt -yy install $DESKTOP_PKGS $MISC_DESKTOP_PKGS
 
 
 #	Install the kernel.
