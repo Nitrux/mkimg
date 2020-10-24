@@ -42,7 +42,7 @@ apt update &> /dev/null
 apt -yy install $BASIC_PKGS --no-install-recommends
 
 
-#	Add key for Neon repository.
+#	Add key for elementary repository.
 
 puts "ADDING REPOSITORY KEYS."
 
