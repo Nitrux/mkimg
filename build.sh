@@ -11,7 +11,7 @@ XORRISO_PKGS='
 	libburn4
 	libisoburn1
 	libisofs6
-	libjte2
+	libjte1
 	mtools
 	sshpass
 	xorriso
