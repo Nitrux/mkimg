@@ -91,7 +91,7 @@ cp $(echo $build_dir/boot/initrd*  | tr " " "\n" | sort | tail -n 1) $iso_dir/bo
 #	Remove chroot host kernel from $build_dir.
 #	BUG: vmlinuz and initrd links are not created in $build_dir/; they're left at $build_dir/boot
 
-rm \
+rm -rf \
 	$build_dir/boot/*
 
 
