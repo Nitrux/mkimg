@@ -30,7 +30,6 @@ GRUB_PKGS='
 
 apt -qq update
 apt -qq -yy install $XORRISO_PKGS $GRUB_PKGS --no-install-recommends
-pip3 install --upgrade python-gitlab
 
 
 #	base image URL.
