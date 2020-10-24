@@ -35,7 +35,7 @@ pip3 install --upgrade python-gitlab
 
 #	base image URL.
 
-base_img_url=http://cdimage.ubuntu.com/ubuntu-base/releases/20.04/release/ubuntu-base-20.04.1-base-amd64.tar.gz
+base_img_url=http://cdimage.ubuntu.com/ubuntu-base/releases/18.04.5/release/ubuntu-base-18.04.5-base-amd64.tar.gz
 
 
 #	Prepare the directories for the build.
