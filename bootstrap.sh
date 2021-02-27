@@ -266,6 +266,7 @@ NX_DESKTOP_PKG='
 '
 
 MISC_DESKTOP_PKGS='
+	appstream
 	dmz-cursor-theme
 	dosfstools/focal
 	fwupd/ceres
