@@ -56,6 +56,7 @@ PRE_BUILD_PKGS='
 	bluez
 	btrfs-progs
 	cgroupfs-mount
+	cups-daemon
 	dictionaries-common
 	efibootmgr
 	grub-common
