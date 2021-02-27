@@ -260,14 +260,18 @@ NX_DESKTOP_PKG='
 '
 
 MISC_DESKTOP_PKGS='
+	dmz-cursor-theme
+	dosfstools/focal
 	fwupd/ceres
+	i3
+	i3status
 	libfwupd2/ceres
 	libfwupdplugin1/ceres
-	sudo/ceres
-	libpam0g/focal-updates
-	libpam-modules/focal-updates
 	libpam-modules-bin/focal-updates
-	dosfstools/focal
+	libpam-modules/focal-updates
+	libpam0g/focal-updates
+	sudo/ceres
+	xterm/ceres
 '
 
 CALAMARES_PKGS='
@@ -387,6 +391,8 @@ puts "ADDING MISC. FIXES."
 
 cat /configs/files/grub > /etc/default/grub
 cat /configs/files/casper.conf > /etc/casper.conf
+
+ln -sv /usr/share/xsessions/i3.desktop /usr/share/xsessions/plasma.desktop 
 
 rm /boot/vmlinuz /boot/initrd.img /boot/vmlinuz.old /boot/initrd.img.old
 
