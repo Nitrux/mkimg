@@ -248,7 +248,12 @@ XENIAL_PKGS='
 '
 
 DEVUAN_PULSE_PKGS='
-	
+	libpulse-mainloop-glib0=14.2-1
+	libpulse0=14.2-1
+	libpulsedsp=14.2-1
+	pulseaudio-module-bluetooth=14.2-1
+	pulseaudio-utils=14.2-1
+	pulseaudio=14.2-1
 '
 
 MISC_KDE_PKGS='
