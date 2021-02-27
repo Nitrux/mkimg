@@ -219,7 +219,7 @@ puts "INSTALLING BASE SYSTEM."
 
 NITRUX_BASE_PKGS='
 	base-files=11.2.3+nitrux-legacy
-	nitrux-hardware-drivers-legacy
+	nitrux-hardware-drivers-legacy-minimal
 	nitrux-minimal-legacy
 	nitrux-standard-legacy
 	linux-image-mainline-lts-5.4
@@ -240,32 +240,23 @@ install $NITRUX_BASE_PKGS $NVIDIA_DRV_PKGS
 puts "INSTALLING DESKTOP PACKAGES."
 
 LIBPNG12_PKG='
-	libpng12-0
+	
 '
 
 XENIAL_PKGS='
-	plymouth=0.9.2-3ubuntu13.5
-	plymouth-label=0.9.2-3ubuntu13.5
-	plymouth-themes=0.9.2-3ubuntu13.5
-	libplymouth4=0.9.2-3ubuntu13.5
-	ttf-ubuntu-font-family
+	
 '
 
 DEVUAN_PULSE_PKGS='
-	libpulse-mainloop-glib0=14.2-1
-	libpulse0=14.2-1
-	libpulsedsp=14.2-1
-	pulseaudio-module-bluetooth=14.2-1
-	pulseaudio-utils=14.2-1
-	pulseaudio=14.2-1
+	
 '
 
 MISC_KDE_PKGS='
-	plasma-pa=4:5.20.5-1
+	sddm
 '
 
 NX_DESKTOP_PKG='
-	nx-desktop-legacy
+	nx-desktop-legacy-minimal
 '
 
 MISC_DESKTOP_PKGS='
@@ -399,8 +390,8 @@ cat /configs/files/casper.conf > /etc/casper.conf
 
 rm /boot/vmlinuz /boot/initrd.img /boot/vmlinuz.old /boot/initrd.img.old
 
-ln -svf /boot/vmlinuz-5.4.83-050483-generic /vmlinuz
-ln -svf /boot/initrd.img-5.4.83-050483-generic /initrd.img
+ln -svf /boot/vmlinuz-5.4.100-0504100-generic /vmlinuz
+ln -svf /boot/initrd.img-5.4.100-0504100-generic /initrd.img
 
 
 #	Use LZ4 compression when creating the initramfs.
