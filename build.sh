@@ -124,7 +124,7 @@ mkiso \
 	-r "${TRAVIS_COMMIT:0:7}" \
 	-g $config_dir/files/grub.cfg \
 	-g $config_dir/files/loopback.cfg \
-	-t grub-theme/ubuntu \
+	-t grub-theme/Breeze \
 	$iso_dir $output_dir/$image
 
 
