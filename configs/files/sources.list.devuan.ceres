@@ -7,10 +7,10 @@
 # Devuan Repos Ceres #
 ######################
 
-deb http://deb.devuan.org/devuan ceres main
+deb http://deb.devuan.org/devuan ceres main non-free
 
 #############################
 # Devuan Merged Repos Ceres #
 #############################
 
-deb http://deb.devuan.org/merged ceres main
+deb http://deb.devuan.org/merged ceres main non-free

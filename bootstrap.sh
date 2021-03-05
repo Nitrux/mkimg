@@ -223,7 +223,7 @@ NITRUX_BASE_PKGS='
 	nitrux-hardware-drivers-legacy-minimal
 	nitrux-minimal-legacy
 	nitrux-standard-legacy
-	linux-image-mainline-lts-5.4
+	linux-image-mainline-lts
 '
 
 NVIDIA_DRV_PKGS='
@@ -272,6 +272,7 @@ MISC_DESKTOP_PKGS='
 	fwupd/ceres
 	i3
 	i3status
+	fwupd/ceres
 	libfwupd2/ceres
 	libfwupdplugin1/ceres
 	libpam-modules-bin/focal-updates
@@ -403,8 +404,8 @@ ln -sv /usr/share/xsessions/i3.desktop /usr/share/xsessions/plasma.desktop
 
 rm /boot/vmlinuz /boot/initrd.img /boot/vmlinuz.old /boot/initrd.img.old
 
-ln -svf /boot/vmlinuz-5.4.100-0504100-generic /vmlinuz
-ln -svf /boot/initrd.img-5.4.100-0504100-generic /initrd.img
+ln -svf /boot/vmlinuz-5.10.19-051019-generic /vmlinuz
+ln -svf /boot/initrd.img-5.10.19-051019-generic /initrd.img
 
 
 #	Use LZ4 compression when creating the initramfs.
