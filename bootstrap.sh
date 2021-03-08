@@ -219,7 +219,7 @@ install_downgrades $DEVUAN_INIT_PKGS
 puts "INSTALLING BASE SYSTEM."
 
 NITRUX_BASE_PKGS='
-	base-files=11.2.3+nitrux-legacy
+	base-files=11.2.4+nitrux-legacy
 	nitrux-hardware-drivers-legacy-minimal
 	nitrux-minimal-legacy
 	nitrux-standard-legacy
