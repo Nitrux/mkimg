@@ -2,14 +2,13 @@
 
 #	Exit on errors.
 
-set -xe
+set -e
 
 
 #	Travis stuff.
 
 XORRISO_PKGS='
 	libburn4
-	libgcc1
 	libisoburn1
 	libisofs6
 	libjte2
@@ -18,24 +17,19 @@ XORRISO_PKGS='
 	xorriso
 '
 
-GRUB_PKGS='
-	grub-common
+GRUB_EFI_PKGS='
 	grub-efi-amd64
-	grub-efi-amd64-bin
-	grub-efi-amd64-signed
-	grub-pc-bin
-	grub2-common
 	shim-signed
 '
 
 apt -qq update
-apt -qq -yy install $XORRISO_PKGS $GRUB_PKGS --no-install-recommends
-pip3 install --upgrade python-gitlab
+apt -yy upgrade > /dev/null
+apt -yy install $XORRISO_PKGS $GRUB_EFI_PKGS --no-install-recommends > /dev/null
 
 
 #	base image URL.
 
-base_img_url=http://cdimage.ubuntu.com/ubuntu-base/releases/20.04/release/ubuntu-base-20.04.2-base-amd64.tar.gz
+base_img_url=https://raw.githubusercontent.com/debuerreotype/docker-debian-artifacts/dist-amd64/unstable/rootfs.tar.xz
 
 
 #	Prepare the directories for the build.
@@ -57,8 +51,8 @@ hash_url=http://repo.nxos.org:8000/${image%.iso}.md5sum
 
 #	Prepare the directory where the filesystem will be created.
 
-wget -qO base.tar.gz $base_img_url
-tar xf base.tar.gz -C $build_dir
+wget -qO base.tar.xz $base_img_url
+tar xf base.tar.xz -C $build_dir
 
 
 #	Populate $build_dir.
@@ -130,4 +124,3 @@ md5sum $output_dir/$image > $output_dir/${image%.iso}.md5sum
 for f in $output_dir/*; do
     SSHPASS=$DEPLOY_PASS sshpass -e scp -q -o stricthostkeychecking=no "$f" $DEPLOY_USER@$DEPLOY_HOST:$DEPLOY_PATH
 done
-

@@ -1,5 +1,13 @@
+#####################
+#  Package Priority #
+#####################
+
 Package: base-files
 Pin: release *
+Pin-Priority: -1
+
+Package: calamares
+Pin: release o=Debian,a=unstable,n=sid
 Pin-Priority: -1
 
 Package: dash
@@ -10,24 +18,32 @@ Package: fuse
 Pin: release *
 Pin-Priority: -1
 
-Package: plymouth-theme-spinner
-Pin: release *
+Package: fwupd
+Pin: release a=focal,n=focal
 Pin-Priority: -1
 
-Package: plasma-pa
-Pin: release *
+Package: grub-common
+Pin: release o=Debian,a=unstable,n=sid
 Pin-Priority: -1
 
-Package: ufw
-Pin: release *
+Package: grub-efi-amd64
+Pin: release o=Debian,a=unstable,n=sid
 Pin-Priority: -1
 
-Package: xterm
-Pin: release *
+Package: grub-efi-amd64-bin
+Pin: release o=Debian,a=unstable,n=sid
 Pin-Priority: -1
 
-Package: libqt5webkit5
-Pin: version 5.212.0~alpha4-7
+Package: grub-efi-amd64-signed
+Pin: release o=Debian,a=unstable,n=sid
+Pin-Priority: -1
+
+Package: grub-pc-bin
+Pin: release o=Debian,a=unstable,n=sid
+Pin-Priority: -1
+
+Package: grub2-common
+Pin: release o=Debian,a=unstable,n=sid
 Pin-Priority: -1
 
 Package: k3b
@@ -38,28 +54,184 @@ Package: k3b-i18n
 Pin: release *
 Pin-Priority: -1
 
-Package: qml-module-qmltermwidget
-Pin: version 1.1.1+git20200723-2
+Package: libboost-python1.71.0
+Pin: release o=Debian,a=unstable,n=sid
 Pin-Priority: -1
 
-Package: calamares
-Pin: version 3.2.35.1-0xneon+20.04+focal+build20
+Package: libglu1-mesa
+Pin: release o=Ubuntu,a=focal,n=focal
 Pin-Priority: -1
 
-Package: fwupd
-Pin: version 1.5.3-0xneon+20.04+focal+build3
+Package: libpulsedsp
+Pin: release o=Ubuntu,a=focal,n=focal
 Pin-Priority: -1
 
-Package: libfwupd2
-Pin: version 1.5.3-0xneon+20.04+focal+build3
+Package: libpulse-mainloop-glib0
+Pin: release o=Ubuntu,a=focal,n=focal
 Pin-Priority: -1
 
-Package: libfwupdplugin1
-Pin: version 1.5.3-0xneon+20.04+focal+build3
+Package: rng-tools
+Pin: release o=Debian,a=unstable,n=sid
 Pin-Priority: -1
 
-Package: packagekit
-Pin: version 1.2.2-2+devuan1
+Package: pulseaudio
+Pin: release o=Ubuntu,a=focal,n=focal
+Pin-Priority: -1
+
+Package: pulseaudio-utils
+Pin: release o=Ubuntu,a=focal,n=focal
+Pin-Priority: -1
+
+Package: pulseaudio-module-gsettings
+Pin: release o=Ubuntu,a=focal,n=focal
+Pin-Priority: -1
+
+Package: pulseaudio-module-bluetooth
+Pin: release o=Ubuntu,a=focal,n=focal
+Pin-Priority: -1
+
+Package: plymouth
+Pin: release o=Debian,a=unstable,n=sid
+Pin-Priority: -1
+
+Package: plymouth-label
+Pin: release o=Debian,a=unstable,n=sid
+Pin-Priority: -1
+
+Package: plymouth-theme-spinner
+Pin: release *
+Pin-Priority: -1
+
+Package: xterm
+Pin: release *
+Pin-Priority: -1
+
+##########################
+#  Neon Package Priority #
+##########################
+
+Package: baloo-*
+Pin: version 5.80.*
+Pin-Priority: -1
+
+Package: bluedevil
+Pin: version 4:5.21.3*
+Pin-Priority: -1
+
+Package: breeze-*
+Pin: version 4:5.80.*
+Pin-Priority: -1
+
+Package: breeze*
+Pin: version 4:5.21.3*
+Pin-Priority: -1
+
+Package: breeze-*
+Pin: version 4:5.21.3*
+Pin-Priority: -1
+
+Package: breeze-*
+Pin: version 5.21.3*
+Pin-Priority: -1
+
+Package: -breeze*
+Pin: version 5.21.3*
+Pin-Priority: -1
+
+Package: frameworkintegration
+Pin: version 5.80.*
+Pin-Priority: -1
+
+Package: drkonqi
+Pin: version 5.21.3*
+Pin-Priority: -1
+
+Package: k*
+Pin: version 5.80.*
+Pin-Priority: -1
+
+Package: k*
+Pin: version 4:5.80.*
+Pin-Priority: -1
+
+Package: k*
+Pin: version 5.21.3*
+Pin-Priority: -1
+
+Package: k*
+Pin: version 4:5.21.3*
+Pin-Priority: -1
+
+Package: lib*
+Pin: version 5.80.*
+Pin-Priority: -1
+
+Package: lib*
+Pin: version 4:5.80.*
+Pin-Priority: -1
+
+Package: lib*
+Pin: version 5:5.80.*
+Pin-Priority: -1
+
+Package: lib*
+Pin: version 1:5.80.*
+Pin-Priority: -1
+
+Package: lib*
+Pin: version 4:5.21.3*
+Pin-Priority: -1
+
+Package: lib*
+Pin: version 5.21.3*
+Pin-Priority: -1
+
+Package: milou
+Pin: version 4:5.21.3*
+Pin-Priority: -1
+
+Package: oxygen-*
+Pin: version 4:5.21.3*
+Pin-Priority: -1
+
+Package: plasma-*
+Pin: version 5.80.*
+Pin-Priority: -1
+
+Package: plasma-*
+Pin: version 5.21.3*
+Pin-Priority: -1
+
+Package: plasma-*
+Pin: version 4:5.21.3*
+Pin-Priority: -1
+
+Package: polkit-*
+Pin: version 4:5.21.3*
+Pin-Priority: -1
+
+Package: power*
+Pin: version 4:5.21.3*
+Pin-Priority: -1
+
+Package: qml-module-org-kde-*
+Pin: version 5.80.*
+Pin-Priority: -1
+
+Package: qml-module-org-kde-*
+Pin: version 1:5.80.*
+Pin-Priority: -1
+
+Package: qml-module-org-kde-*
+Pin: version 4:5.21.3*
+Pin-Priority: -1
+
+Package: systemsettings
+Pin: version 4:5.21.3*
+Pin-Priority: -1
+
+Package: xdg-*
+Pin: version 5.21.3*
 Pin-Priority: -1
 
 ########################
@@ -68,8 +240,9 @@ Pin-Priority: -1
 
 Package: *
 Pin: release o=user
-Pin-Priority: 700
+Pin-Priority: 500
 
 Package: *
 Pin: origin archive.neon.kde.org
-Pin-Priority: 700
+Pin-Priority: 500
+

@@ -3,8 +3,8 @@
 #   Your changes will be overwritten   #
 ########################################
 
-##################
-# KDE Neon Repos #
-##################
+#########################
+# Debian Repos Unstable #
+#########################
 
-deb http://archive.neon.kde.org/unstable focal main
+deb http://deb.debian.org/debian unstable main non-free contrib
