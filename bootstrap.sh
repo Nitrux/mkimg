@@ -468,6 +468,7 @@ MISC_DESKTOP_PKGS='
 	libpython3.8
 	libpython3.8-minimal
 	libpython3.8-stdlib
+	plymouth-theme-nitrux
 	sddm
 	xterm/unstable
 '
