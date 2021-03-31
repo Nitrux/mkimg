@@ -63,15 +63,15 @@ Pin: release o=Ubuntu,a=focal,n=focal
 Pin-Priority: -1
 
 Package: libpulse0
-Pin: release o=Ubuntu,a=focal,n=focal
+Pin: release o=Ubuntu
 Pin-Priority: -1
 
 Package: libpulsedsp
-Pin: release o=Ubuntu,a=focal,n=focal
+Pin: release o=Ubuntu
 Pin-Priority: -1
 
 Package: libpulse-mainloop-glib0
-Pin: release o=Ubuntu,a=focal,n=focal
+Pin: release o=Ubuntu
 Pin-Priority: -1
 
 Package: rng-tools
@@ -79,19 +79,19 @@ Pin: release o=Debian,a=unstable,n=sid
 Pin-Priority: -1
 
 Package: pulseaudio
-Pin: release o=Ubuntu,a=focal,n=focal
+Pin: release o=Ubuntu
 Pin-Priority: -1
 
 Package: pulseaudio-utils
-Pin: release o=Ubuntu,a=focal,n=focal
+Pin: release o=Ubuntu
 Pin-Priority: -1
 
 Package: pulseaudio-module-gsettings
-Pin: release o=Ubuntu,a=focal,n=focal
+Pin: release o=Ubuntu
 Pin-Priority: -1
 
 Package: pulseaudio-module-bluetooth
-Pin: release o=Ubuntu,a=focal,n=focal
+Pin: release o=Ubuntu
 Pin-Priority: -1
 
 Package: plymouth
