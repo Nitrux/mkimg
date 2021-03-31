@@ -62,6 +62,10 @@ Package: libglu1-mesa
 Pin: release o=Ubuntu,a=focal,n=focal
 Pin-Priority: -1
 
+Package: libpulse0
+Pin: release o=Ubuntu,a=focal,n=focal
+Pin-Priority: -1
+
 Package: libpulsedsp
 Pin: release o=Ubuntu,a=focal,n=focal
 Pin-Priority: -1
