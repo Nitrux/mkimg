@@ -14,6 +14,10 @@ Package: dash
 Pin: release *
 Pin-Priority: -1
 
+Package: dosfstools
+Pin: release o=Debian,a=unstable,n=sid
+Pin-Priority: -1
+
 Package: fuse
 Pin: release *
 Pin-Priority: -1
@@ -80,10 +84,6 @@ Pin-Priority: -1
 
 Package: rng-tools
 Pin: release o=Debian,a=unstable,n=sid
-Pin-Priority: -1
-
-Package: partitionmanager
-Pin: version 20.12.2-*
 Pin-Priority: -1
 
 Package: partitionmanager
