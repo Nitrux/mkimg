@@ -52,6 +52,7 @@ CHROOT_BASIC_PKGS='
 	dhcpcd5
 	gnupg2
 	initramfs-tools
+	lz4
 '
 
 update
@@ -81,7 +82,7 @@ dist_upgrade
 
 #	Add bootloader.
 #
-#   The GRUB2 packages from Debian do not work correctly with EFI, so we use Ubuntu packages.
+#	The GRUB2 packages from Debian do not work correctly with EFI, so we use Ubuntu packages.
 
 puts "ADDING BOOTLOADER."
 
@@ -114,10 +115,10 @@ remove_keys \
 update
 
 
-#   Add eudev, elogind, and systemctl to replace systemd and utilize other inits.
+#	Add eudev, elogind, and systemctl to replace systemd and utilize other inits.
 #
-#   To remove systemd, we have to replace libsystemd0, udev, elogind and provide systemctl. However, neither of them
-#   are available to install from other sources than Devuan except for systemctl.
+#	To remove systemd, we have to replace libsystemd0, udev, elogind and provide systemctl. However, neither of them
+#	are available to install from other sources than Devuan except for systemctl.
 
 add_keys \
 	541922FB \
@@ -219,9 +220,9 @@ remove_keys \
 update
 
 
-#   Add casper.
+#	Add casper.
 #
-#   It's worth noting that casper isn't available anywhere but Ubuntu.
+#	It's worth noting that casper isn't available anywhere but Ubuntu.
 #	Debian doesn't use it; it uses live-boot, live-config, et. al.
 
 puts "ADDING CASPER."
@@ -251,12 +252,12 @@ remove_keys \
 update
 
 
-#   Add misc. Ubuntu packages.
+#	Add misc. Ubuntu packages.
 #
-#   Some packages required by our meta-packages are only available in Ubuntu.
+#	Some packages required by our meta-packages are only available in Ubuntu.
 #
-#   The rng-tools package is a transitional package for rng-tools5 in Debian; however, its init script
-#   has a different name than the one we list in openrc-config, so we use the package from Ubuntu instead.
+#	The rng-tools package is a transitional package for rng-tools5 in Debian; however, its init script
+#	has a different name than the one we list in openrc-config, so we use the package from Ubuntu instead.
 
 puts "ADDING UBUNTU MISC. PACKAGES."
 
@@ -315,11 +316,11 @@ remove_keys \
 update
 
 
-#   Adding PolicyKit packages from Devuan.
+#	Adding PolicyKit packages from Devuan.
 #
-#   Since we're using elogind to replace logind, we need to add the matching PolicyKit packages.
+#	Since we're using elogind to replace logind, we need to add the matching PolicyKit packages.
 #
-#   Strangely, the complete stack is only available in beowulf but not in ceres or chimaera.
+#	Strangely, the complete stack is only available in beowulf but not in ceres or chimaera.
 
 puts "ADDING POLICYKIT ELOGIND COMPAT."
 
@@ -352,9 +353,9 @@ remove_keys \
 update
 
 
-#   Add misc. Devuan packages.
+#	Add misc. Devuan packages.
 #
-#   The network-manager package that is available in Debian does not have an init script compatible with OpenRC.
+#	The network-manager package that is available in Debian does not have an init script compatible with OpenRC.
 #	so we use the package from Devuan instead.
 #
 #	Devuan, like Debian, has both unstable and experimental suites, called ceres and chimaera. Prioritize installing
@@ -386,7 +387,7 @@ remove_keys \
 update
 
 
-#   Add Nitrux meta-packages.
+#	Add Nitrux meta-packages.
 
 puts "ADDING NITRUX BASE."
 
@@ -400,11 +401,11 @@ NITRUX_BASE_PKGS='
 install $NITRUX_BASE_PKGS
 
 
-#   Add Nvidia drivers or Nouveau.
+#	Add Nvidia drivers or Nouveau.
 #
-#   The package nouveau-firmware isn't available in Debian but only in Ubuntu.
+#	The package nouveau-firmware isn't available in Debian but only in Ubuntu.
 #
-#   The Nvidia proprietary driver can't be installed alongside Nouveau.
+#	The Nvidia proprietary driver can't be installed alongside Nouveau.
 #
 #	To install it replace the Nouveau packages with the Nvidia counterparts.
 
@@ -437,7 +438,7 @@ update
 
 #	Add NX Desktop meta-package.
 #
-#   Use MISC_DESKTOP_PKGS to add packages to test. If tests are positive, add to the appropriate meta-package.
+#	Use MISC_DESKTOP_PKGS to add packages to test. If tests are positive, add to the appropriate meta-package.
 #
 #	Use the KDE Neon repository to provide the latest stable release of Plasma and KF5.
 
@@ -465,13 +466,13 @@ MISC_DESKTOP_PKGS='
 install $NX_DESKTOP_PKG $MISC_DESKTOP_PKGS
 
 
-#   Add Calamares.
+#	Add Calamares.
 #
-#   The version of Calamares in Debian is not up-to-date and may present problems 
-#   with the most recent version of dosfstools.
+#	The version of Calamares in Debian is not up-to-date and may present problems 
+#	with the most recent version of dosfstools.
 #
-#   To resolve this problem, we use the package from KDE Neon. Unfortunately, the package from Neon
-#   requires libboost-python-1.71.0-py38, so we have to satisfy that dependency.
+#	To resolve this problem, we use the package from KDE Neon. Unfortunately, the package from Neon
+#	requires libboost-python-1.71.0-py38, so we have to satisfy that dependency.
 
 puts "ADDING CALAMARES INSTALLER."
 
@@ -570,10 +571,10 @@ NX_REPO_PKG='
 install $NX_REPO_PKG
 
 
-#   Add OpenRC configuration.
+#	Add OpenRC configuration.
 #
-#   Due to how the upstream openrc package "works," we need to put this package at the end of the build process.
-#   Otherwise, we end up with an unbootable system.
+#	Due to how the upstream openrc package "works," we need to put this package at the end of the build process.
+#	Otherwise, we end up with an unbootable system.
 #
 #	See https://github.com/Nitrux/openrc-config/issues/1
 
