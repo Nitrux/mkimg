@@ -67,15 +67,15 @@ Pin: version 20.12.3-*
 Pin-Priority: -1
 
 Package: libpulse0
-Pin: release o=Ubuntu,a=focal,n=focal
+Pin: origin archive.ubuntu.com
 Pin-Priority: -1
 
 Package: libpulsedsp
-Pin: release o=Ubuntu,a=focal,n=focal
+Pin: origin archive.ubuntu.com
 Pin-Priority: -1
 
 Package: libpulse-mainloop-glib0
-Pin: release o=Ubuntu,a=focal,n=focal
+Pin: origin archive.ubuntu.com
 Pin-Priority: -1
 
 Package: rng-tools
@@ -95,19 +95,19 @@ Pin: release o=Ubuntu,a=focal,n=focal
 Pin-Priority: -1
 
 Package: pulseaudio
-Pin: release o=Ubuntu,a=focal,n=focal
+Pin: origin archive.ubuntu.com
 Pin-Priority: -1
 
 Package: pulseaudio-utils
-Pin: release o=Ubuntu,a=focal,n=focal
+Pin: origin archive.ubuntu.com
 Pin-Priority: -1
 
 Package: pulseaudio-module-gsettings
-Pin: release o=Ubuntu,a=focal,n=focal
+Pin: origin archive.ubuntu.com
 Pin-Priority: -1
 
 Package: pulseaudio-module-bluetooth
-Pin: release o=Ubuntu,a=focal,n=focal
+Pin: origin archive.ubuntu.com
 Pin-Priority: -1
 
 Package: plymouth
