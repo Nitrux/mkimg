@@ -468,23 +468,10 @@ install $NX_DESKTOP_PKG $MISC_DESKTOP_PKGS
 
 #	Add Calamares.
 #
-#	The version of Calamares in Debian is not up-to-date and may present problems 
-#	with the most recent version of dosfstools.
-#
-#	To resolve this problem, we use the package from KDE Neon. Unfortunately, the package from Neon
-#	requires libboost-python-1.71.0-py38, so we have to satisfy that dependency.
+#	A problem with libkpmcore 20.12.3 causes Calamares to fail to copy the squashfs to 
+#	the target device; instead, it copies it to tmpfs. We stick to the version of Calamares from Debian.
 
 puts "ADDING CALAMARES INSTALLER."
-
-add_keys \
-	55751E5D \
-	3B4FE6ACC0B21F32 \
-	871920D1991BC93C > /dev/null
-
-cp /configs/files/sources.list.neon.user /etc/apt/sources.list.d/neon-user-repo.list
-cp /configs/files/sources.list.focal /etc/apt/sources.list.d/ubuntu-focal-repo.list
-
-update
 
 CALAMARES_PKGS='
 	calamares
@@ -493,17 +480,6 @@ CALAMARES_PKGS='
 '
 
 install $CALAMARES_PKGS
-
-rm \
-	/etc/apt/sources.list.d/neon-user-repo.list \
-	/etc/apt/sources.list.d/ubuntu-focal-repo.list
-
-remove_keys \
-	55751E5D \
-	3B4FE6ACC0B21F32 \
-	871920D1991BC93C > /dev/null
-
-update
 
 
 #	Hold packages.
