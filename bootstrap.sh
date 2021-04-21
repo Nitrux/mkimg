@@ -442,6 +442,16 @@ update
 #
 #	Use the KDE Neon repository to provide the latest stable release of Plasma and KF5.
 
+add_keys \
+	55751E5D \
+	3B4FE6ACC0B21F32 \
+	871920D1991BC93C > /dev/null
+
+cp /configs/files/sources.list.neon.user /etc/apt/sources.list.d/neon-user-repo.list
+cp /configs/files/sources.list.focal /etc/apt/sources.list.d/ubuntu-focal-repo.list
+
+update
+
 puts "ADDING NX DESKTOP."
 
 NX_DESKTOP_PKG='
@@ -455,6 +465,7 @@ MISC_DESKTOP_PKGS='
 	cups-daemon
 	i3
 	i3status
+	libkpmcore10
 	libpython3.8
 	libpython3.8-minimal
 	libpython3.8-stdlib
@@ -465,6 +476,16 @@ MISC_DESKTOP_PKGS='
 
 install $NX_DESKTOP_PKG $MISC_DESKTOP_PKGS
 
+rm \
+	/etc/apt/sources.list.d/neon-user-repo.list \
+	/etc/apt/sources.list.d/ubuntu-focal-repo.list
+
+remove_keys \
+	55751E5D \
+	3B4FE6ACC0B21F32 \
+	871920D1991BC93C > /dev/null
+
+update
 
 #	Add Calamares.
 #
