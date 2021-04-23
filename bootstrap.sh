@@ -274,16 +274,6 @@ MISC_UBUNTU_HIRSUTE_PKGS='
 	linux-sound-base
 	libc6-dev
 	locales
-	language-pack-en
-	language-pack-en-base
-	language-pack-es
-	language-pack-es-base
-	language-pack-de
-	language-pack-de-base
-	language-pack-fr
-	language-pack-fr-base
-	language-pack-pt
-	language-pack-pt-base
 	policykit-desktop-privileges
 	rng-tools
 	secureboot-db
@@ -486,6 +476,7 @@ remove_keys \
 	871920D1991BC93C > /dev/null
 
 update
+
 
 #	Add Calamares.
 #
