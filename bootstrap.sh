@@ -520,17 +520,6 @@ HOLD_MISC_PKGS='
 hold $HOLD_MISC_PKGS
 
 
-#	Add live user.
-
-puts "ADDING LIVE USER."
-
-NX_LIVE_USER_PKG='
-	nitrux-live-user
-'
-
-install $NX_LIVE_USER_PKG
-
-
 #	Update Appstream cache.
 
 clean_all
