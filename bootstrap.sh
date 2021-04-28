@@ -165,7 +165,6 @@ update
 puts "ADDING OPENRC AS INIT."
 
 OPENRC_INIT_PKGS='
-	fgetty
 	initscripts
 	init-system-helpers
 	openrc
