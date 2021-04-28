@@ -90,23 +90,23 @@ add_keys \
 	3B4FE6ACC0B21F32 \
 	871920D1991BC93C > /dev/null
 
-cp /configs/files/sources.list.hirsute /etc/apt/sources.list.d/ubuntu-hirsute-repo.list
+cp /configs/files/sources.list.impish /etc/apt/sources.list.d/ubuntu-impish-repo.list
 
 update
 
 GRUB2_PKGS='
-	grub-common/hirsute
-	grub-efi-amd64/hirsute
-	grub-efi-amd64-bin/hirsute
-	grub-efi-amd64-signed/hirsute
-	grub-pc-bin/hirsute
-	grub2-common/hirsute
+	grub-common/impish
+	grub-efi-amd64/impish
+	grub-efi-amd64-bin/impish
+	grub-efi-amd64-signed/impish
+	grub-pc-bin/impish
+	grub2-common/impish
 '
 
 install $GRUB2_PKGS
 
 rm \
-	/etc/apt/sources.list.d/ubuntu-hirsute-repo.list
+	/etc/apt/sources.list.d/ubuntu-impish-repo.list
 
 remove_keys \
 	3B4FE6ACC0B21F32 \
@@ -230,7 +230,7 @@ add_keys \
 	3B4FE6ACC0B21F32 \
 	871920D1991BC93C > /dev/null
 
-cp /configs/files/sources.list.hirsute /etc/apt/sources.list.d/ubuntu-hirsute-repo.list
+cp /configs/files/sources.list.impish /etc/apt/sources.list.d/ubuntu-impish-repo.list
 
 update
 
@@ -242,7 +242,7 @@ CASPER_PKGS='
 install $CASPER_PKGS
 
 rm \
-	/etc/apt/sources.list.d/ubuntu-hirsute-repo.list
+	/etc/apt/sources.list.d/ubuntu-impish-repo.list
 
 remove_keys \
 	3B4FE6ACC0B21F32 \
@@ -264,11 +264,11 @@ add_keys \
 	3B4FE6ACC0B21F32 \
 	871920D1991BC93C > /dev/null
 
-cp /configs/files/sources.list.hirsute /etc/apt/sources.list.d/ubuntu-hirsute-repo.list
+cp /configs/files/sources.list.impish /etc/apt/sources.list.d/ubuntu-impish-repo.list
 
 update
 
-MISC_UBUNTU_HIRSUTE_PKGS='
+MISC_UBUNTU_impish_PKGS='
 	linux-firmware
 	linux-sound-base
 	libc6-dev
@@ -280,10 +280,10 @@ MISC_UBUNTU_HIRSUTE_PKGS='
 	ubuntu-drivers-common
 '
 
-install $MISC_UBUNTU_HIRSUTE_PKGS
+install $MISC_UBUNTU_impish_PKGS
 
 rm \
-	/etc/apt/sources.list.d/ubuntu-hirsute-repo.list
+	/etc/apt/sources.list.d/ubuntu-impish-repo.list
 
 cp /configs/files/sources.list.bionic /etc/apt/sources.list.d/ubuntu-bionic-repo.list
 
@@ -404,7 +404,7 @@ add_keys \
 	3B4FE6ACC0B21F32 \
 	871920D1991BC93C > /dev/null
 
-cp /configs/files/sources.list.hirsute /etc/apt/sources.list.d/ubuntu-hirsute-repo.list
+cp /configs/files/sources.list.impish /etc/apt/sources.list.d/ubuntu-impish-repo.list
 
 update
 
@@ -416,7 +416,7 @@ NVIDIA_DRV_PKGS='
 install $NVIDIA_DRV_PKGS
 
 rm \
-	/etc/apt/sources.list.d/ubuntu-hirsute-repo.list
+	/etc/apt/sources.list.d/ubuntu-impish-repo.list
 
 remove_keys \
 	3B4FE6ACC0B21F32 \
@@ -530,7 +530,7 @@ rm \
 	/etc/apt/sources.list.d/neon-user-repo.list \
 	/etc/apt/sources.list.d/ubuntu-bionic-repo.list \
 	/etc/apt/sources.list.d/ubuntu-focal-repo.list \
-	/etc/apt/sources.list.d/ubuntu-hirsute-repo.list \
+	/etc/apt/sources.list.d/ubuntu-impish-repo.list \
 	/etc/apt/sources.list.d/ubuntu-xenial-repo.list || true
 
 update
