@@ -181,7 +181,7 @@ install $OPENRC_INIT_PKGS
 puts "ADDING KERNEL."
 
 MAINLINE_KERNEL_PKG='
-	linux-image-mainline-lts-5.4
+	linux-image-mainline-lts
 '
 
 install $MAINLINE_KERNEL_PKG
@@ -381,7 +381,7 @@ update
 puts "ADDING NITRUX BASE."
 
 NITRUX_BASE_PKGS='
-	base-files=11.2.5+nitrux-legacy
+	base-files=11.2.6+nitrux-legacy
 	nitrux-hardware-drivers-legacy-minimal
 	nitrux-minimal-legacy
 	nitrux-standard-legacy
@@ -580,8 +580,8 @@ ln -sv /usr/share/xsessions/i3.desktop /usr/share/xsessions/plasma.desktop
 rm \
 	/boot/{vmlinuz,initrd.img,vmlinuz.old,initrd.img.old} || true
 
-ln -svf /boot/vmlinuz-5.4.111-0504111-generic /vmlinuz
-ln -svf /boot/initrd.img-5.4.111-0504111-generic /initrd.img
+ln -svf /boot/vmlinuz-5.10.33-051033-generic /vmlinuz
+ln -svf /boot/initrd.img-5.10.33-051033-generic /initrd.img
 
 dpkg_force_remove dash || true
 
@@ -622,7 +622,7 @@ dpkg-query -f '${binary:Package}\n' -W | wc -l
 
 puts "PERFORM MANUAL CHECKS."
 
-ls -l \
+ls -lh \
 	/boot \
 	/etc/runlevels/{default,nonetwork,off,recovery,sysinit} \
 	/{vmlinuz,initrd.img} \
