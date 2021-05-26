@@ -585,7 +585,7 @@ ln -svf /boot/initrd.img-5.10.33-051033-generic /initrd.img
 
 dpkg_force_remove dash || true
 
-ln -svf /bin/mksh /bin/sh
+ln -svf /bin/bash /bin/sh
 
 dpkg_force_remove dash
 
