@@ -78,6 +78,10 @@ Package: libpulse-mainloop-glib0
 Pin: origin archive.ubuntu.com
 Pin-Priority: -1
 
+Package: libwbclient0
+Pin: origin archive.ubuntu.com
+Pin-Priority: -1
+
 Package: rng-tools
 Pin: release o=Debian,a=unstable,n=sid
 Pin-Priority: -1
