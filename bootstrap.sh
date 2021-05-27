@@ -387,7 +387,11 @@ NITRUX_BASE_PKGS='
 	nitrux-standard-legacy
 '
 
-install $NITRUX_BASE_PKGS
+X11_BASE_PKGS='
+	xserver-xorg-core
+'
+
+install $NITRUX_BASE_PKGS $X11_BASE_PKGS
 
 
 #	Add Nvidia drivers or Nouveau.
@@ -580,8 +584,8 @@ ln -sv /usr/share/xsessions/i3.desktop /usr/share/xsessions/plasma.desktop
 rm \
 	/boot/{vmlinuz,initrd.img,vmlinuz.old,initrd.img.old} || true
 
-ln -svf /boot/vmlinuz-5.10.33-051033-generic /vmlinuz
-ln -svf /boot/initrd.img-5.10.33-051033-generic /initrd.img
+ln -svf /boot/vmlinuz-5.10.35-051035-generic /vmlinuz
+ln -svf /boot/initrd.img-5.10.35-051035-generic /initrd.img
 
 dpkg_force_remove dash || true
 
