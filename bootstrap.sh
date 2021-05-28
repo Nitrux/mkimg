@@ -381,7 +381,7 @@ update
 puts "ADDING NITRUX BASE."
 
 NITRUX_BASE_PKGS='
-	base-files=11.2.6+nitrux-legacy
+	base-files=11.2.7+nitrux-legacy
 	nitrux-hardware-drivers-legacy-minimal
 	nitrux-minimal-legacy
 	nitrux-standard-legacy
@@ -453,9 +453,9 @@ NX_DESKTOP_PKG='
 
 MISC_DESKTOP_PKGS='
 	appstream
-	dmz-cursor-theme
 	bluez
 	cups-daemon
+	dmz-cursor-theme
 	i3
 	i3status
 	libkpmcore10
@@ -463,6 +463,8 @@ MISC_DESKTOP_PKGS='
 	libpython3.8-minimal
 	libpython3.8-stdlib
 	plymouth-theme-nitrux
+	qml-module-qtquick-controls2
+	qml-module-qtquick-layouts
 	sddm
 	xterm/unstable
 '
