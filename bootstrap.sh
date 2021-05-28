@@ -465,6 +465,7 @@ MISC_DESKTOP_PKGS='
 	plymouth-theme-nitrux
 	qml-module-qtquick-controls2
 	qml-module-qtquick-layouts
+	qml-module-qtquick-window2
 	sddm
 	xterm/unstable
 '
