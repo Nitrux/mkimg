@@ -469,6 +469,7 @@ MISC_DESKTOP_PKGS='
 	qml-module-qtquick-window2
 	sddm
 	xterm/unstable
+	libqt5core5a/unstable
 '
 
 install $NX_DESKTOP_PKG $MISC_DESKTOP_PKGS
