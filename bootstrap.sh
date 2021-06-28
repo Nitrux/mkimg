@@ -101,6 +101,7 @@ GRUB2_PKGS='
 	grub-efi-amd64-signed/impish
 	grub-pc-bin/impish
 	grub2-common/impish
+	libfreetype6/unstable
 '
 
 install $GRUB2_PKGS
@@ -495,6 +496,10 @@ CALAMARES_PKGS='
 	calamares
 	calamares-settings-nitrux
 	squashfs-tools
+	libqt5positioning5
+	libqt5printsupport5
+	libqt5sensors5
+	libqt5webchannel5
 '
 
 install $CALAMARES_PKGS
