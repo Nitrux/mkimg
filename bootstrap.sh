@@ -594,8 +594,8 @@ ln -sv /usr/share/xsessions/i3.desktop /usr/share/xsessions/plasma.desktop
 rm \
 	/boot/{vmlinuz,initrd.img,vmlinuz.old,initrd.img.old} || true
 
-ln -svf /boot/vmlinuz-5.10.35-051035-generic /vmlinuz
-ln -svf /boot/initrd.img-5.10.35-051035-generic /initrd.img
+ln -svf /boot/vmlinuz-5.13.0-051300-generic /vmlinuz
+ln -svf /boot/initrd.img-5.13.0-051300-generic /initrd.img
 
 dpkg_force_remove dash || true
 
