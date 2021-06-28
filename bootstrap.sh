@@ -470,6 +470,7 @@ MISC_DESKTOP_PKGS='
 	sddm
 	xterm/unstable
 	libqt5core5a/unstable
+	libqt5qml5/unstable
 '
 
 install $NX_DESKTOP_PKG $MISC_DESKTOP_PKGS
