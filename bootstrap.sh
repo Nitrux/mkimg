@@ -463,14 +463,16 @@ MISC_DESKTOP_PKGS='
 	libpython3.8
 	libpython3.8-minimal
 	libpython3.8-stdlib
+	libqt5positioning5
+	libqt5printsupport5
+	libqt5sensors5
+	libqt5webchannel5
 	plymouth-theme-nitrux
 	qml-module-qtquick-controls2
 	qml-module-qtquick-layouts
 	qml-module-qtquick-window2
 	sddm
 	xterm/unstable
-	libqt5core5a/unstable
-	libqt5qml5/unstable
 '
 
 install $NX_DESKTOP_PKG $MISC_DESKTOP_PKGS
@@ -498,10 +500,6 @@ CALAMARES_PKGS='
 	calamares
 	calamares-settings-nitrux
 	squashfs-tools
-	libqt5positioning5
-	libqt5printsupport5
-	libqt5sensors5
-	libqt5webchannel5
 '
 
 install $CALAMARES_PKGS
