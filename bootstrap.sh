@@ -459,14 +459,21 @@ MISC_DESKTOP_PKGS='
 	dmz-cursor-theme
 	i3
 	i3status
+	libkf5xmlgui5
 	libkpmcore10
 	libpython3.8
 	libpython3.8-minimal
 	libpython3.8-stdlib
 	libqt5positioning5
 	libqt5printsupport5
+	libqt5quickwidgets5
 	libqt5sensors5
+	libqt5svg5
+	libqt5texttospeech5
+	libqt5waylandclient5
 	libqt5webchannel5
+	libqt5webkit5
+	libqt5xml5
 	plymouth-theme-nitrux
 	qml-module-qtquick-controls2
 	qml-module-qtquick-layouts
