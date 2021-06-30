@@ -9,7 +9,8 @@ puts () { printf "\n\n --- %s\n" "$*"; }
 
 #	Wrap APT commands in functions.
 
-add_keys () { apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $@; }
+add_nitrux_key () { curl -L https://packagecloud.io/nitrux/repo/gpgkey | apt-key add -; }
+add_repo_keys () { apt-key adv --keyserver keyserver.ubuntu.com --recv-keys $@; }
 appstream_refresh_force () { appstreamcli refresh --force; }
 autoremove () { apt -yy autoremove $@; }
 clean_all () { apt clean && apt autoclean; }
@@ -64,8 +65,7 @@ install $CHROOT_BASIC_PKGS
 
 puts "ADDING REPOSITORY KEYS."
 
-add_keys \
-	1B69B2DA > /dev/null
+add_nitrux_key
 
 
 #	Copy repository sources.
@@ -86,7 +86,7 @@ dist_upgrade
 
 puts "ADDING BOOTLOADER."
 
-add_keys \
+add_repo_keys \
 	3B4FE6ACC0B21F32 \
 	871920D1991BC93C > /dev/null
 
@@ -121,7 +121,7 @@ update
 #	To remove systemd, we have to replace libsystemd0, udev, elogind and provide systemctl. However, neither of them
 #	are available to install from other sources than Devuan except for systemctl.
 
-add_keys \
+add_repo_keys \
 	541922FB \
 	BB23C00C61FC752C > /dev/null
 
@@ -195,7 +195,7 @@ install $MAINLINE_KERNEL_PKG
 
 puts "ADDING PLYMOUTH."
 
-add_keys \
+add_repo_keys \
 	541922FB \
 	BB23C00C61FC752C > /dev/null
 
@@ -227,7 +227,7 @@ update
 
 puts "ADDING CASPER."
 
-add_keys \
+add_repo_keys \
 	3B4FE6ACC0B21F32 \
 	871920D1991BC93C > /dev/null
 
@@ -261,7 +261,7 @@ update
 
 puts "ADDING UBUNTU MISC. PACKAGES."
 
-add_keys \
+add_repo_keys \
 	3B4FE6ACC0B21F32 \
 	871920D1991BC93C > /dev/null
 
@@ -314,7 +314,7 @@ update
 
 puts "ADDING POLICYKIT ELOGIND COMPAT."
 
-add_keys \
+add_repo_keys \
 	541922FB \
 	BB23C00C61FC752C > /dev/null
 
@@ -353,7 +353,7 @@ update
 
 puts "ADDING DEVUAN MISC. PACKAGES."
 
-add_keys \
+add_repo_keys \
 	541922FB \
 	BB23C00C61FC752C > /dev/null
 
@@ -405,7 +405,7 @@ install $NITRUX_BASE_PKGS $X11_BASE_PKGS
 
 puts "ADDING NVIDIA DRIVERS/NOUVEAU FIRMWARE."
 
-add_keys \
+add_repo_keys \
 	3B4FE6ACC0B21F32 \
 	871920D1991BC93C > /dev/null
 
@@ -436,7 +436,7 @@ update
 #
 #	Use the KDE Neon repository to provide the latest stable release of Plasma and KF5.
 
-add_keys \
+add_repo_keys \
 	55751E5D \
 	3B4FE6ACC0B21F32 \
 	871920D1991BC93C > /dev/null

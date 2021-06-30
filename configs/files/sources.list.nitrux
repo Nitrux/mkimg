@@ -7,4 +7,4 @@
 # Nitrux Repos #
 ################
 
-deb https://repo.nxos.org/nitrux nitrux main
+deb https://packagecloud.io/nitrux/repo/debian/ trixie main
