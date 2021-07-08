@@ -54,7 +54,9 @@ CHROOT_BASIC_PKGS='
 	dhcpcd5
 	gnupg2
 	initramfs-tools
+	libzstd-dev
 	lz4
+	zstd
 '
 
 update
@@ -79,6 +81,32 @@ cp /configs/files/sources.list.debian.unstable /etc/apt/sources.list.d/debian-un
 
 update
 dist_upgrade
+
+
+#	Upgrade dpkg to support zstd compressed packages
+
+add_repo_keys \
+	3B4FE6ACC0B21F32 \
+	871920D1991BC93C > /dev/null
+
+cp /configs/files/sources.list.impish /etc/apt/sources.list.d/ubuntu-impish-repo.list
+
+update
+
+UPGRADE_DPKG_ZSTD='
+	dpkg
+'
+
+only_upgrade $UPGRADE_DPKG_ZSTD
+
+rm \
+	/etc/apt/sources.list.d/ubuntu-impish-repo.list
+
+remove_keys \
+	3B4FE6ACC0B21F32 \
+	871920D1991BC93C > /dev/null
+
+update
 
 
 #	Add bootloader.
